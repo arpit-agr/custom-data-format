@@ -2,6 +2,8 @@
 {% set css %}
   {% include "./reset.css" %}
   {% include "./a11y.css" %}
+  {% include "./global.css" %}
+  {% include "./utilities.css" %}
 {% endset %}
 
 <style>{{ css | cssmin | safe }}</style>

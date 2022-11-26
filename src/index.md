@@ -1,6 +1,8 @@
 ---
-title: Hello World
+title: EXIF
 layout: "layouts/home.html"
 ---
 
-# {{ title }}
+# Feed exif image data into the data cascade
+
+<pre>{{ exif | dump('\t') | safe }}</pre>
