@@ -1,0 +1,7 @@
+<!-- capture the CSS content as a Nunjucks variable -->
+{% set css %}
+  {% include "./reset.css" %}
+  {% include "./a11y.css" %}
+{% endset %}
+
+<style>{{ css | cssmin | safe }}</style>
