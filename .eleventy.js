@@ -1,6 +1,7 @@
 const directoryOutputPlugin = require("@11ty/eleventy-plugin-directory-output");
 const htmlmin = require("html-minifier");
 const CleanCSS = require("clean-css");
+const exifr = require("exifr");
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.setQuietMode(true);
@@ -41,6 +42,21 @@ module.exports = function(eleventyConfig) {
     }
 
     return content;
+  });
+
+  //Feed exif image data into the data cascade 
+  eleventyConfig.addDataExtension("png,jpeg,jpg", {
+    parser: async file => {
+      let exif = await exifr.parse(file);
+
+      return {
+        exif
+      };
+    },
+
+    // Using `read: false` changes the parser argument to
+    // a file path instead of file contents.
+    read: false,
   });
 
   return {
